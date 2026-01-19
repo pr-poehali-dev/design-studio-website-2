@@ -84,305 +84,248 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
-        <div className="container mx-auto px-6 py-4">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white border-b border-border/50' : 'bg-transparent'}`}>
+        <div className="container mx-auto px-8 py-6">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">
-              <span className="text-primary">Design</span>
-              <span className="text-foreground">Studio</span>
+            <div className="text-sm font-light tracking-widest">
+              DESIGN STUDIO
             </div>
-            <div className="hidden md:flex gap-8 items-center">
+            <div className="hidden md:flex gap-12 items-center">
               {['home', 'portfolio', 'services', 'about', 'team', 'blog', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === section ? 'text-primary' : 'text-foreground/70'}`}
+                  className={`text-xs font-light tracking-wide transition-colors uppercase ${activeSection === section ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {section === 'home' && 'Главная'}
                   {section === 'portfolio' && 'Портфолио'}
                   {section === 'services' && 'Услуги'}
-                  {section === 'about' && 'О студии'}
+                  {section === 'about' && 'О нас'}
                   {section === 'team' && 'Команда'}
                   {section === 'blog' && 'Блог'}
                   {section === 'contact' && 'Контакты'}
                 </button>
               ))}
             </div>
-            <Button className="hidden md:flex">Связаться</Button>
             <Button variant="ghost" size="icon" className="md:hidden">
-              <Icon name="Menu" size={24} />
+              <Icon name="Menu" size={20} />
             </Button>
           </div>
         </div>
       </nav>
 
-      <section id="home" className="pt-32 pb-20 px-6 min-h-screen flex items-center">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-              Создаём визуальные<br />
-              <span className="text-primary">истории</span>
+      <section id="home" className="pt-48 pb-32 px-8 min-h-screen flex items-center">
+        <div className="container mx-auto max-w-5xl">
+          <div className="animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-light mb-8 leading-tight tracking-tight">
+              Создаём<br />
+              визуальные истории
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground mb-16 max-w-xl font-light leading-relaxed">
               Студия графического дизайна, специализирующаяся на создании уникальных иллюстраций и визуальных решений
             </p>
-            <div className="flex gap-4 justify-center">
-              <Button size="lg" onClick={() => scrollToSection('portfolio')} className="text-lg px-8">
-                Смотреть работы
-                <Icon name="ArrowRight" size={20} className="ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection('contact')} className="text-lg px-8">
+            <div className="flex gap-6">
+              <button onClick={() => scrollToSection('portfolio')} className="text-sm font-light border-b border-foreground pb-1 hover:border-muted-foreground transition-colors">
+                Смотреть работы →
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Обсудить проект
-              </Button>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="portfolio" className="py-20 px-6 bg-secondary/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Портфолио</h2>
-            <p className="text-xl text-muted-foreground">Наши лучшие работы</p>
+      <section id="portfolio" className="py-32 px-8">
+        <div className="container mx-auto max-w-6xl">
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">Портфолио</h2>
+            <p className="text-sm text-muted-foreground font-light">Избранные работы</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {portfolio.map((item, index) => (
-              <Card
+              <div
                 key={item.id}
-                className="group overflow-hidden cursor-pointer border-0 shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in"
+                className="group animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="aspect-square relative overflow-hidden">
+                <div className="aspect-square relative overflow-hidden mb-4 bg-secondary/10">
                   <img 
                     src={item.image} 
                     alt={`${item.category} - ${item.client}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
-                    <div className="text-center text-white">
-                      <div className="font-semibold text-lg mb-1">{item.category}</div>
-                      <div className="text-sm opacity-90">{item.client}</div>
-                    </div>
-                  </div>
                 </div>
-              </Card>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-light">{item.category}</h3>
+                  <p className="text-xs text-muted-foreground">{item.client}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-20 px-6">
+      <section id="services" className="py-32 px-8 bg-secondary/5">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Услуги</h2>
-            <p className="text-xl text-muted-foreground">Что мы делаем лучше всего</p>
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">Услуги</h2>
+            <p className="text-sm text-muted-foreground font-light">Наши компетенции</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {services.map((service, index) => (
-              <Card
+              <div
                 key={index}
-                className="p-8 border-2 hover:border-primary transition-all duration-300 animate-scale-in"
+                className="border-l border-border/30 pl-8 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                  <Icon name={service.icon} size={32} className="text-primary" />
+                <div className="mb-6">
+                  <Icon name={service.icon} size={28} className="text-foreground/30" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </Card>
+                <h3 className="text-lg font-light mb-4">{service.title}</h3>
+                <p className="text-sm text-muted-foreground font-light leading-relaxed">{service.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6 bg-secondary/30">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold mb-4">О студии</h2>
+      <section id="about" className="py-32 px-8">
+        <div className="container mx-auto max-w-5xl">
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">О студии</h2>
           </div>
-          <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+          <div className="space-y-8 text-base leading-loose text-muted-foreground font-light max-w-3xl">
             <p>
               Design Studio — это творческая команда профессионалов, объединённых любовью к визуальному искусству и стремлением создавать уникальные решения для каждого клиента.
             </p>
             <p>
               Мы специализируемся на создании графических элементов, иллюстраций и визуальных материалов, которые помогают брендам выделиться и донести свою историю до аудитории.
             </p>
-            <p>
-              Наш подход основан на глубоком понимании задач клиента, тщательном исследовании и безграничном творчестве. Каждый проект для нас — это возможность создать что-то особенное.
-            </p>
           </div>
-          <div className="grid grid-cols-3 gap-8 mt-16">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">150+</div>
-              <div className="text-muted-foreground">Проектов</div>
+          <div className="grid grid-cols-3 gap-16 mt-24 max-w-2xl">
+            <div>
+              <div className="text-4xl font-light mb-2">150+</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide">Проектов</div>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Клиентов</div>
+            <div>
+              <div className="text-4xl font-light mb-2">50+</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide">Клиентов</div>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">8</div>
-              <div className="text-muted-foreground">Лет опыта</div>
+            <div>
+              <div className="text-4xl font-light mb-2">8</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wide">Лет опыта</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="team" className="py-20 px-6">
+      <section id="team" className="py-32 px-8 bg-secondary/5">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Команда</h2>
-            <p className="text-xl text-muted-foreground">Люди, которые создают магию</p>
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">Команда</h2>
+            <p className="text-sm text-muted-foreground font-light">Наши люди</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {team.map((member, index) => (
-              <Card
+              <div
                 key={index}
-                className="text-center p-6 border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in"
+                className="text-center animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 mx-auto mb-6 flex items-center justify-center">
-                  <Icon name="User" size={48} className="text-primary" />
+                <div className="w-32 h-32 rounded-full bg-secondary/20 mx-auto mb-6 flex items-center justify-center">
+                  <Icon name="User" size={40} className="text-muted-foreground/30" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-primary mb-2">{member.role}</p>
-                <p className="text-sm text-muted-foreground">{member.experience}</p>
-              </Card>
+                <h3 className="text-base font-light mb-2">{member.name}</h3>
+                <p className="text-xs text-muted-foreground mb-1">{member.role}</p>
+                <p className="text-xs text-muted-foreground/70">{member.experience}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="blog" className="py-20 px-6 bg-secondary/30">
+      <section id="blog" className="py-32 px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Блог</h2>
-            <p className="text-xl text-muted-foreground">Делимся опытом и знаниями</p>
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">Блог</h2>
+            <p className="text-sm text-muted-foreground font-light">Мысли и идеи</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-12">
             {blogPosts.map((post, index) => (
-              <Card
+              <div
                 key={index}
-                className="p-6 hover:shadow-xl transition-all duration-300 cursor-pointer animate-scale-in"
+                className="group border-b border-border/30 pb-12 hover:border-border transition-colors cursor-pointer animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon name="FileText" size={24} className="text-primary" />
-                </div>
-                <div className="text-sm text-muted-foreground mb-3">{post.date}</div>
-                <h3 className="text-xl font-bold mb-3">{post.title}</h3>
-                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                <Button variant="ghost" className="p-0 h-auto">
-                  Читать далее
-                  <Icon name="ArrowRight" size={16} className="ml-2" />
-                </Button>
-              </Card>
+                <div className="text-xs text-muted-foreground/70 mb-4 uppercase tracking-wide">{post.date}</div>
+                <h3 className="text-xl font-light mb-4 group-hover:text-muted-foreground transition-colors">{post.title}</h3>
+                <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-2xl">{post.excerpt}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Контакты</h2>
-            <p className="text-xl text-muted-foreground">Свяжитесь с нами для обсуждения проекта</p>
+      <section id="contact" className="py-32 px-8 bg-secondary/5">
+        <div className="container mx-auto max-w-5xl">
+          <div className="mb-20">
+            <h2 className="text-2xl font-light mb-2">Контакты</h2>
+            <p className="text-sm text-muted-foreground font-light">Давайте обсудим ваш проект</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Icon name="Mail" size={24} className="text-primary" />
-                </div>
-                <div>
-                  <div className="font-semibold mb-1">Email</div>
-                  <div className="text-muted-foreground">hello@designstudio.com</div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div className="space-y-10">
+              <div>
+                <div className="text-xs text-muted-foreground/70 mb-2 uppercase tracking-wide">Email</div>
+                <div className="text-sm font-light">hello@designstudio.com</div>
               </div>
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Icon name="Phone" size={24} className="text-primary" />
-                </div>
-                <div>
-                  <div className="font-semibold mb-1">Телефон</div>
-                  <div className="text-muted-foreground">+7 (495) 123-45-67</div>
-                </div>
+              <div>
+                <div className="text-xs text-muted-foreground/70 mb-2 uppercase tracking-wide">Телефон</div>
+                <div className="text-sm font-light">+7 (495) 123-45-67</div>
               </div>
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Icon name="MapPin" size={24} className="text-primary" />
-                </div>
-                <div>
-                  <div className="font-semibold mb-1">Адрес</div>
-                  <div className="text-muted-foreground">Москва, ул. Примерная, 123</div>
-                </div>
+              <div>
+                <div className="text-xs text-muted-foreground/70 mb-2 uppercase tracking-wide">Адрес</div>
+                <div className="text-sm font-light">Москва, ул. Примерная, 123</div>
               </div>
             </div>
-            <Card className="p-8 border-2">
+            <div>
               <form className="space-y-6">
                 <div>
-                  <Input placeholder="Ваше имя" />
+                  <Input placeholder="Ваше имя" className="rounded-none border-t-0 border-x-0 border-b border-border/50 focus:border-foreground px-0" />
                 </div>
                 <div>
-                  <Input type="email" placeholder="Email" />
+                  <Input type="email" placeholder="Email" className="rounded-none border-t-0 border-x-0 border-b border-border/50 focus:border-foreground px-0" />
                 </div>
                 <div>
-                  <Textarea placeholder="Расскажите о вашем проекте" rows={5} />
+                  <Textarea placeholder="Расскажите о вашем проекте" rows={5} className="rounded-none border-t-0 border-x-0 border-b border-border/50 focus:border-foreground px-0 resize-none" />
                 </div>
-                <Button className="w-full" size="lg">
+                <Button variant="outline" className="rounded-none w-full" size="lg">
                   Отправить
-                  <Icon name="Send" size={18} className="ml-2" />
                 </Button>
               </form>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-foreground text-background py-12 px-6">
+      <footer className="border-t border-border/30 py-16 px-8">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="flex justify-between items-start mb-16">
             <div>
-              <div className="text-2xl font-bold mb-4">
-                <span className="text-primary">Design</span>Studio
+              <div className="text-sm font-light tracking-widest mb-2">
+                DESIGN STUDIO
               </div>
-              <p className="text-background/70">Создаём визуальные истории</p>
+              <p className="text-xs text-muted-foreground font-light">Создаём визуальные истории</p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Услуги</h4>
-              <ul className="space-y-2 text-background/70">
-                <li>Брендинг</li>
-                <li>Иллюстрация</li>
-                <li>Графический дизайн</li>
-                <li>UI/UX дизайн</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
-              <ul className="space-y-2 text-background/70">
-                <li>О студии</li>
-                <li>Команда</li>
-                <li>Блог</li>
-                <li>Карьера</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Соцсети</h4>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                  <Icon name="Instagram" size={20} />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                  <Icon name="Linkedin" size={20} />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                  <Icon name="Facebook" size={20} />
-                </div>
-              </div>
+            <div className="flex gap-8">
+              <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Instagram</a>
+              <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Behance</a>
+              <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Dribbble</a>
             </div>
           </div>
-          <div className="border-t border-background/20 pt-8 text-center text-background/70">
-            <p>© 2024 Design Studio. Все права защищены.</p>
+          <div className="border-t border-border/30 pt-8 flex justify-between items-center">
+            <p className="text-xs text-muted-foreground/70">© 2024 Design Studio</p>
+            <a href="/admin" className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Admin</a>
           </div>
         </div>
       </footer>
