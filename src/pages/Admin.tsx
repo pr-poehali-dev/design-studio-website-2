@@ -48,7 +48,7 @@ export default function Admin() {
       <div className="min-h-screen bg-background flex items-center justify-center px-8">
         <div className="w-full max-w-md">
           <div className="mb-12 text-center">
-            <h1 className="text-2xl font-light tracking-wide mb-2">Admin Panel</h1>
+            <h1 className="text-2xl font-light tracking-wide mb-2">LINEA Studio</h1>
             <p className="text-sm text-muted-foreground font-light">Введите пароль для доступа</p>
           </div>
           
@@ -88,7 +88,7 @@ export default function Admin() {
         <div className="container mx-auto px-8 py-8">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-light tracking-wide">
-              <span className="text-foreground">Admin Panel</span>
+              <span className="text-foreground">LINEA Studio</span>
             </h1>
 <div className="flex gap-4 items-center">
               <button

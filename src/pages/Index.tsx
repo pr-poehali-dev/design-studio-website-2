@@ -88,7 +88,7 @@ export default function Index() {
         <div className="container mx-auto px-8 py-6">
           <div className="flex justify-between items-center">
             <div className="text-sm font-light tracking-widest">
-              DESIGN STUDIO
+              LINEA STUDIO
             </div>
             <div className="hidden md:flex gap-12 items-center">
               {['home', 'portfolio', 'services', 'about', 'team', 'blog', 'contact'].map((section) => (
@@ -122,7 +122,7 @@ export default function Index() {
               визуальные истории
             </h1>
             <p className="text-base md:text-lg text-muted-foreground mb-16 max-w-xl font-light leading-relaxed">
-              Студия графического дизайна, специализирующаяся на создании уникальных иллюстраций и визуальных решений
+              Студия графического дизайна. Создаём чистые линии, формы и визуальные решения для современных брендов.
             </p>
             <div className="flex gap-6">
               <button onClick={() => scrollToSection('portfolio')} className="text-sm font-light border-b border-foreground pb-1 hover:border-muted-foreground transition-colors">
@@ -197,7 +197,7 @@ export default function Index() {
           </div>
           <div className="space-y-8 text-base leading-loose text-muted-foreground font-light max-w-3xl">
             <p>
-              Design Studio — это творческая команда профессионалов, объединённых любовью к визуальному искусству и стремлением создавать уникальные решения для каждого клиента.
+              LINEA Studio — это творческая команда профессионалов, объединённых любовью к визуальному искусству и стремлением создавать уникальные решения для каждого клиента.
             </p>
             <p>
               Мы специализируемся на создании графических элементов, иллюстраций и визуальных материалов, которые помогают брендам выделиться и донести свою историю до аудитории.
@@ -313,9 +313,9 @@ export default function Index() {
           <div className="flex justify-between items-start mb-16">
             <div>
               <div className="text-sm font-light tracking-widest mb-2">
-                DESIGN STUDIO
+                LINEA STUDIO
               </div>
-              <p className="text-xs text-muted-foreground font-light">Создаём визуальные истории</p>
+              <p className="text-xs text-muted-foreground font-light">Чистые линии. Точные формы.</p>
             </div>
             <div className="flex gap-8">
               <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Instagram</a>
@@ -324,7 +324,7 @@ export default function Index() {
             </div>
           </div>
           <div className="border-t border-border/30 pt-8 flex justify-between items-center">
-            <p className="text-xs text-muted-foreground/70">© 2024 Design Studio</p>
+            <p className="text-xs text-muted-foreground/70">© 2024 LINEA Studio</p>
             <a href="/admin" className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Admin</a>
           </div>
         </div>
