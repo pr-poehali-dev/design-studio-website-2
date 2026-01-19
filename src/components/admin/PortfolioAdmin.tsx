@@ -107,16 +107,15 @@ export default function PortfolioAdmin() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Управление портфолио</h2>
+        <h2 className="text-xl font-light">Портфолио ({items.length})</h2>
         <Dialog open={isOpen} onOpenChange={(open) => {
           setIsOpen(open);
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
-              <Icon name="Plus" size={20} className="mr-2" />
+            <Button variant="outline" className="rounded-none">
               Добавить работу
             </Button>
           </DialogTrigger>
@@ -181,40 +180,38 @@ export default function PortfolioAdmin() {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((item) => (
-          <Card key={item.id} className="overflow-hidden">
-            <div className="aspect-square relative">
-              <img src={item.image_url} alt={item.client} className="w-full h-full object-cover" />
-            </div>
-            <div className="p-4">
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="font-bold text-lg">{item.category}</h3>
-                  <p className="text-muted-foreground">{item.client}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => handleEdit(item)}
-                  >
-                    <Icon name="Pencil" size={18} />
-                  </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <Icon name="Trash2" size={18} />
-                  </Button>
-                </div>
+          <div key={item.id} className="group">
+            <div className="aspect-square relative overflow-hidden mb-4 bg-secondary/20">
+              <img src={item.image_url} alt={item.client} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-none h-8 w-8"
+                  onClick={() => handleEdit(item)}
+                >
+                  <Icon name="Pencil" size={14} />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-none h-8 w-8"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  <Icon name="Trash2" size={14} />
+                </Button>
               </div>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-sm font-light">{item.category}</h3>
+              <p className="text-xs text-muted-foreground">{item.client}</p>
               {item.description && (
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <p className="text-xs text-muted-foreground/70 pt-2">{item.description}</p>
               )}
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>

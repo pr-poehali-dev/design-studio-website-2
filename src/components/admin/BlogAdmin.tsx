@@ -124,16 +124,15 @@ export default function BlogAdmin() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Управление блогом</h2>
+        <h2 className="text-xl font-light">Блог ({posts.length})</h2>
         <Dialog open={isOpen} onOpenChange={(open) => {
           setIsOpen(open);
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
-              <Icon name="Plus" size={20} className="mr-2" />
+            <Button variant="outline" className="rounded-none">
               Добавить статью
             </Button>
           </DialogTrigger>
@@ -212,42 +211,38 @@ export default function BlogAdmin() {
         </Dialog>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {posts.map((post) => (
-          <Card key={post.id} className="p-6">
+          <div key={post.id} className="group border-b border-border/30 pb-6 hover:border-border transition-colors">
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-2">{post.title}</h3>
-                <p className="text-muted-foreground mb-3">{post.excerpt}</p>
-                <div className="flex gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Icon name="Calendar" size={16} />
-                    {new Date(post.publish_date).toLocaleDateString('ru-RU')}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Icon name="User" size={16} />
-                    {post.author}
-                  </span>
+                <h3 className="text-lg font-light mb-3">{post.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 font-light">{post.excerpt}</p>
+                <div className="flex gap-6 text-xs text-muted-foreground/70">
+                  <span>{new Date(post.publish_date).toLocaleDateString('ru-RU')}</span>
+                  <span>{post.author}</span>
                 </div>
               </div>
-              <div className="flex gap-2 ml-4">
+              <div className="flex gap-2 ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-8 w-8"
                   onClick={() => handleEdit(post)}
                 >
-                  <Icon name="Pencil" size={18} />
+                  <Icon name="Pencil" size={14} />
                 </Button>
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-8 w-8"
                   onClick={() => handleDelete(post.id)}
                 >
-                  <Icon name="Trash2" size={18} />
+                  <Icon name="Trash2" size={14} />
                 </Button>
               </div>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>

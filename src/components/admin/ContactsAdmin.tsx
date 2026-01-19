@@ -89,11 +89,11 @@ export default function ContactsAdmin() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'new':
-        return <Badge className="bg-primary">Новая</Badge>;
+        return <Badge variant="outline" className="rounded-none font-light">Новая</Badge>;
       case 'read':
-        return <Badge variant="secondary">Прочитана</Badge>;
+        return <Badge variant="outline" className="rounded-none font-light text-muted-foreground">Прочитана</Badge>;
       case 'replied':
-        return <Badge variant="outline">Отвечено</Badge>;
+        return <Badge variant="outline" className="rounded-none font-light text-muted-foreground">Отвечено</Badge>;
       default:
         return null;
     }
@@ -111,59 +111,49 @@ export default function ContactsAdmin() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Заявки с формы контактов</h2>
-        <div className="flex gap-2">
-          <Badge variant="outline" className="text-base">
-            Всего: {requests.length}
-          </Badge>
-          <Badge className="bg-primary text-base">
-            Новых: {requests.filter(r => r.status === 'new').length}
-          </Badge>
+        <h2 className="text-xl font-light">Заявки ({requests.length})</h2>
+        <div className="flex gap-4 text-sm text-muted-foreground">
+          <span>Новых: {requests.filter(r => r.status === 'new').length}</span>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {requests.map((request) => (
-          <Card key={request.id} className="p-6 hover:shadow-lg transition-shadow">
+          <div key={request.id} className="group border-b border-border/30 pb-6 hover:border-border transition-colors">
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-xl font-bold">{request.name}</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <h3 className="text-base font-light">{request.name}</h3>
                   {getStatusBadge(request.status)}
                 </div>
-                <div className="flex gap-4 text-sm text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1">
-                    <Icon name="Mail" size={16} />
-                    {request.email}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Icon name="Calendar" size={16} />
-                    {formatDate(request.created_at)}
-                  </span>
+                <div className="flex gap-6 text-xs text-muted-foreground/70 mb-3">
+                  <span>{request.email}</span>
+                  <span>{formatDate(request.created_at)}</span>
                 </div>
-                <p className="text-muted-foreground line-clamp-2">{request.message}</p>
+                <p className="text-sm text-muted-foreground font-light line-clamp-2">{request.message}</p>
               </div>
-              <div className="flex gap-2 ml-4">
+              <div className="flex gap-2 ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Button
                   variant="outline"
                   size="sm"
+                  className="rounded-none text-xs h-8"
                   onClick={() => handleView(request)}
                 >
-                  <Icon name="Eye" size={16} className="mr-2" />
                   Просмотр
                 </Button>
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-8 w-8"
                   onClick={() => handleDelete(request.id)}
                 >
-                  <Icon name="Trash2" size={18} />
+                  <Icon name="Trash2" size={14} />
                 </Button>
               </div>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
 

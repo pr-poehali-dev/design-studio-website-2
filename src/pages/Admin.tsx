@@ -12,46 +12,36 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState('portfolio');
 
   return (
-    <div className="min-h-screen bg-secondary/30">
-      <div className="border-b bg-background">
-        <div className="container mx-auto px-6 py-4">
+    <div className="min-h-screen bg-background">
+      <div className="border-b border-border/50">
+        <div className="container mx-auto px-8 py-8">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">
-                <span className="text-primary">Design</span>
-                <span className="text-foreground">Studio</span>
-                <span className="text-muted-foreground ml-3 text-xl">/ Админ-панель</span>
-              </h1>
-            </div>
-            <a href="/" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <Icon name="ArrowLeft" size={20} />
-              На сайт
+            <h1 className="text-2xl font-light tracking-wide">
+              <span className="text-foreground">Admin Panel</span>
+            </h1>
+            <a href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              ← Вернуться на сайт
             </a>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-8 py-12">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
-            <TabsTrigger value="portfolio" className="flex items-center gap-2">
-              <Icon name="Image" size={18} />
+          <TabsList className="bg-transparent border-b border-border/50 rounded-none h-auto p-0 mb-16 justify-start gap-12">
+            <TabsTrigger value="portfolio" className="bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:shadow-none pb-4 text-base font-light">
               Портфолио
             </TabsTrigger>
-            <TabsTrigger value="blog" className="flex items-center gap-2">
-              <Icon name="FileText" size={18} />
+            <TabsTrigger value="blog" className="bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:shadow-none pb-4 text-base font-light">
               Блог
             </TabsTrigger>
-            <TabsTrigger value="team" className="flex items-center gap-2">
-              <Icon name="Users" size={18} />
+            <TabsTrigger value="team" className="bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:shadow-none pb-4 text-base font-light">
               Команда
             </TabsTrigger>
-            <TabsTrigger value="services" className="flex items-center gap-2">
-              <Icon name="Layers" size={18} />
+            <TabsTrigger value="services" className="bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:shadow-none pb-4 text-base font-light">
               Услуги
             </TabsTrigger>
-            <TabsTrigger value="contacts" className="flex items-center gap-2">
-              <Icon name="Mail" size={18} />
+            <TabsTrigger value="contacts" className="bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:shadow-none pb-4 text-base font-light">
               Заявки
             </TabsTrigger>
           </TabsList>

@@ -108,16 +108,15 @@ export default function TeamAdmin() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Управление командой</h2>
+        <h2 className="text-xl font-light">Команда ({members.length})</h2>
         <Dialog open={isOpen} onOpenChange={(open) => {
           setIsOpen(open);
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
-              <Icon name="Plus" size={20} className="mr-2" />
+            <Button variant="outline" className="rounded-none">
               Добавить сотрудника
             </Button>
           </DialogTrigger>
@@ -182,35 +181,37 @@ export default function TeamAdmin() {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {members.map((member) => (
-          <Card key={member.id} className="p-6">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 mx-auto mb-4 flex items-center justify-center">
-              <Icon name="User" size={40} className="text-primary" />
+          <div key={member.id} className="group text-center">
+            <div className="w-32 h-32 rounded-full bg-secondary/20 mx-auto mb-6 flex items-center justify-center">
+              <Icon name="User" size={48} className="text-muted-foreground/40" />
             </div>
-            <h3 className="font-bold text-lg text-center mb-1">{member.name}</h3>
-            <p className="text-primary text-center mb-1">{member.role}</p>
-            <p className="text-sm text-muted-foreground text-center mb-3">{member.experience}</p>
+            <h3 className="font-light text-base mb-2">{member.name}</h3>
+            <p className="text-xs text-muted-foreground mb-1">{member.role}</p>
+            <p className="text-xs text-muted-foreground/70 mb-3">{member.experience}</p>
             {member.bio && (
-              <p className="text-sm text-muted-foreground text-center mb-4">{member.bio}</p>
+              <p className="text-xs text-muted-foreground/70 mb-4">{member.bio}</p>
             )}
-            <div className="flex gap-2 justify-center">
+            <div className="flex gap-2 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <Button
                 size="icon"
                 variant="ghost"
+                className="h-8 w-8"
                 onClick={() => handleEdit(member)}
               >
-                <Icon name="Pencil" size={18} />
+                <Icon name="Pencil" size={14} />
               </Button>
               <Button
                 size="icon"
                 variant="ghost"
+                className="h-8 w-8"
                 onClick={() => handleDelete(member.id)}
               >
-                <Icon name="Trash2" size={18} />
+                <Icon name="Trash2" size={14} />
               </Button>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>

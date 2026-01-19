@@ -124,16 +124,15 @@ export default function ServicesAdmin() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Управление услугами</h2>
+        <h2 className="text-xl font-light">Услуги ({services.length})</h2>
         <Dialog open={isOpen} onOpenChange={(open) => {
           setIsOpen(open);
           if (!open) resetForm();
         }}>
           <DialogTrigger asChild>
-            <Button>
-              <Icon name="Plus" size={20} className="mr-2" />
+            <Button variant="outline" className="rounded-none">
               Добавить услугу
             </Button>
           </DialogTrigger>
@@ -192,33 +191,35 @@ export default function ServicesAdmin() {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {services.map((service) => (
-          <Card key={service.id} className="p-6">
-            <div className="flex justify-between items-start mb-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <Icon name={service.icon} size={32} className="text-primary" />
+          <div key={service.id} className="group border border-border/30 p-8 hover:border-border transition-colors">
+            <div className="flex justify-between items-start mb-6">
+              <div className="w-12 h-12 flex items-center justify-center">
+                <Icon name={service.icon} size={32} className="text-foreground/40" />
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-8 w-8"
                   onClick={() => handleEdit(service)}
                 >
-                  <Icon name="Pencil" size={18} />
+                  <Icon name="Pencil" size={14} />
                 </Button>
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-8 w-8"
                   onClick={() => handleDelete(service.id)}
                 >
-                  <Icon name="Trash2" size={18} />
+                  <Icon name="Trash2" size={14} />
                 </Button>
               </div>
             </div>
-            <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-            <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-          </Card>
+            <h3 className="text-lg font-light mb-4">{service.title}</h3>
+            <p className="text-sm text-muted-foreground font-light leading-relaxed">{service.description}</p>
+          </div>
         ))}
       </div>
     </div>
